@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TouchableOpacity, ScrollView, FlatList} from 'react-native';
 
 import {styles} from "./styles";
 import { Button } from "../components/Button"
@@ -9,7 +9,11 @@ import {FilterStatus} from "../../types/FilterStatus";
 import {Item} from "../components/Item";
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING]
-
+const ITEMS = [
+    {id: "1", status: FilterStatus.DONE, description: "comprar 1 pacoete café"},
+    {id: "2", status: FilterStatus.PENDING, description: "comprar leite em pó"},
+    {id: "3", status: FilterStatus.DONE, description: "comprar pão"}
+]
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -52,11 +56,18 @@ export default function Home() {
                     </Text>
                 </TouchableOpacity>
             </View>
-
-            <Item
-                data={{status: FilterStatus.DONE, description: "Testando"}}
-                onStatus={() => console.log("Alterando status")}
-                onRemove={() => console.log("Removendo")}
+            <FlatList
+                data={ITEMS}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <Item
+                        data={item}
+                        onStatus={() => {}}
+                        onRemove={() => {}}
+                    />
+                )}
+                ItemSeparatorComponent={() => <View style={styles.separator} />}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     </View>

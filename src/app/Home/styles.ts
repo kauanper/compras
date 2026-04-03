@@ -42,5 +42,11 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         color: '#828282',
         fontWeight: 600,
+    },
+    separator: {
+        width: '100%',
+        backgroundColor: '#eef0f5',
+        height: 1,
+        marginVertical: 16,
     }
 });
