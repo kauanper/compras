@@ -1,4 +1,4 @@
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {useState} from "react";
 
 import {styles} from "./styles";
@@ -17,6 +17,27 @@ const ITEMS = [
 export default function Home() {
     const [filter, setFilter] = useState(FilterStatus.PENDING);
     const [texto, setTexto] = useState("");
+    const [itens, setItens] = useState<any>([]);
+
+    function handlerAddList(): void {
+        // 1. Validação (impede adicionar texto vazio)
+        if (!texto.trim()) {
+            return Alert.alert("Adicionar", "Informe a descrição para adicionar.");
+        }
+
+        // 2. Criação do Objeto (Note as chaves {})
+        const newItem = {
+            id: Math.random().toString(36).substring(2),
+            description: texto, // Supondo que 'texto' é o seu estado do Input
+            status: FilterStatus.PENDING
+        };
+
+        // 3. Atualização da Lista (Mantém os anteriores + o novo)
+        setItens((prevState) => [...prevState, newItem]);
+
+        // 4. Dica: Limpar o campo de texto após adicionar
+        setTexto("");
+    }
 
   return (
     <View style={styles.container}>
@@ -36,7 +57,7 @@ export default function Home() {
             <Button
                 title="Adicionar Item"
                 opacityValue={0.7}
-                onPress={() => console.log("Clicou!")}
+                onPress={() => handlerAddList()}
             />
         </View>
 
@@ -64,7 +85,7 @@ export default function Home() {
                 </TouchableOpacity>
             </View>
             <FlatList
-                data={ITEMS}
+                data={itens}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <Item
