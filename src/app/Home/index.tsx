@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import {Text, View, Image, TouchableOpacity, ScrollView, FlatList} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {useState} from "react";
 
 import {styles} from "./styles";
-import { Button } from "../components/Button"
+import {Button} from "../components/Button"
 import {Input} from "../components/Input";
 import {Filter} from "../components/Filter";
 import {FilterStatus} from "../../types/FilterStatus";
@@ -15,6 +15,8 @@ const ITEMS = [
     {id: "3", status: FilterStatus.DONE, description: "comprar pão"}
 ]
 export default function Home() {
+    const [filter, setFilter] = useState(FilterStatus.PENDING);
+
   return (
     <View style={styles.container}>
         <Image
@@ -41,7 +43,8 @@ export default function Home() {
                     <Filter
                         key={status}
                         status={status}
-                        isActive={true}
+                        isActive={status === filter}
+                        onPress={() => setFilter(status)}
                     />
                 ))}
                 <TouchableOpacity
