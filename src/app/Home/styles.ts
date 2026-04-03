@@ -12,13 +12,17 @@ export const styles = StyleSheet.create({
         width: 134,
     },
     form: {
-        padding: 24,
         gap: 7,
         width: '100%',
         paddingHorizontal: 16,
         marginTop: 42,
     },
     content: {
-
+        backgroundColor: '#fff',
+        flex: 1,
+        width: '100%',
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        marginTop: 24,
     }
 });
