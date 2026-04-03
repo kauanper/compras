@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import {Text, View, Image, Button} from 'react-native';
+import {Text, View, Image} from 'react-native';
+
 import {styles} from "./styles";
+import { Button } from "../components/Button"
 
 export default function Home() {
   return (
@@ -9,7 +11,7 @@ export default function Home() {
           style={styles.logo}
           source={require("@/logo/logo.png")}>
       </Image>
-        <Button title={"Testar"}>
+        <Button>
 
         </Button>
     </View>
