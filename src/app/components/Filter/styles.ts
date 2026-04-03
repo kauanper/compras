@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 5,
-        marginLeft: 18,
     },
     title: {
         fontSize: 12,
