@@ -48,5 +48,9 @@ export const styles = StyleSheet.create({
         backgroundColor: '#eef0f5',
         height: 1,
         marginVertical: 16,
+    },
+    listContent: {
+        paddingTop: 24,
+        paddingBottom: 62,
     }
 });
