@@ -16,6 +16,7 @@ const ITEMS = [
 ]
 export default function Home() {
     const [filter, setFilter] = useState(FilterStatus.PENDING);
+    const [texto, setTexto] = useState("");
 
   return (
     <View style={styles.container}>
@@ -27,6 +28,9 @@ export default function Home() {
         <View style={styles.form}>
             <Input
                 placeholder="O que você está precisando?"
+                onChangeText={(value) => {
+                    setTexto(value)
+                }}
             />
 
             <Button
