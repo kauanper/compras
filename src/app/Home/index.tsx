@@ -7,13 +7,17 @@ import { Button } from "../components/Button"
 export default function Home() {
   return (
     <View style={styles.container}>
-      <Image
-          style={styles.logo}
-          source={require("@/logo/logo.png")}>
-      </Image>
-        <Button>
+        <Image
+        style={styles.logo}
+        source={require("@/logo/logo.png")}
+        />
 
-        </Button>
+        <Button
+            title="Adicionar Item"
+            opacityValue={0.7}
+            onPress={() => console.log("Clicou!")}
+        />
+
     </View>
   );
 }
