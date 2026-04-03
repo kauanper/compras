@@ -32,6 +32,7 @@ export default function Home() {
                 status={FilterStatus.DONE}
                 isActive={true}
             />
+
             <Filter
                 status={FilterStatus.PENDING}
                 isActive={false}
