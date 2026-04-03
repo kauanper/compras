@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, TextInput} from 'react-native';
 
 import {styles} from "./styles";
 import { Button } from "../components/Button"
+import {Input} from "../components/Input";
 
 export default function Home() {
   return (
@@ -10,6 +11,11 @@ export default function Home() {
         <Image
         style={styles.logo}
         source={require("@/logo/logo.png")}
+        />
+
+        <Input
+            placeholderTextColor="black"
+            placeholder="O que você está precisando?"
         />
 
         <Button
