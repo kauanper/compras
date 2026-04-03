@@ -13,17 +13,21 @@ export default function Home() {
         source={require("@/logo/logo.png")}
         />
 
-        <Input
-            placeholderTextColor="black"
-            placeholder="O que você está precisando?"
-        />
+        <View style={styles.form}>
+            <Input
+                placeholder="O que você está precisando?"
+            />
 
-        <Button
-            title="Adicionar Item"
-            opacityValue={0.7}
-            onPress={() => console.log("Clicou!")}
-        />
+            <Button
+                title="Adicionar Item"
+                opacityValue={0.7}
+                onPress={() => console.log("Clicou!")}
+            />
+        </View>
 
+        <View style={styles.content}>
+
+        </View>
     </View>
   );
 }
