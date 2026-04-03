@@ -53,7 +53,11 @@ export default function Home() {
                 </TouchableOpacity>
             </View>
 
-            <Item data={{status: FilterStatus.DONE, description: "Testando"}}/>
+            <Item
+                data={{status: FilterStatus.DONE, description: "Testando"}}
+                onStatus={() => console.log("Alterando status")}
+                onRemove={() => console.log("Removendo")}
+            />
         </View>
     </View>
   );
