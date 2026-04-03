@@ -18,6 +18,12 @@ async function get(): Promise<ItemStorage[]> {
     }
 }
 
+async function getByStatus(status: FilterStatus): Promise<ItemStorage[]> {
+    const storage = await get();
+    return storage.filter(item => item.status === status);
+}
+
 export const itemsStorage = {
     get,
+    getByStatus,
 }
