@@ -33,7 +33,7 @@ export default function Home() {
         };
 
         // 3. Atualização da Lista (Mantém os anteriores + o novo)
-        setItens((prevState) => [...prevState, newItem]);
+        setItens((prevState: any[]) => [...prevState, newItem]);
 
         // 4. Dica: Limpar o campo de texto após adicionar
         setTexto("");
