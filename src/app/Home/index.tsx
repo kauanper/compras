@@ -50,6 +50,22 @@ export default function Home() {
         ]);
     }
 
+    async function handlerClear() {
+        Alert.alert("Remover Tudo", "Realmente deseja apagar tudo?", [
+            { text: "Não", style: "cancel" },
+            {
+                text: "Sim",
+                onPress: async () => {
+                    await itemsStorage.clear();
+                    await loadData()
+                    setItens([]);
+                }
+            }
+        ]);
+    }
+
+
+
     async function loadData() {
         try {
             const response = await itemsStorage.getByStatus(filter);
@@ -99,7 +115,7 @@ export default function Home() {
                     />
                 ))}
                 <TouchableOpacity
-                    onPress={() => console.log("Clicou!")}
+                    onPress={() => handlerClear()}
                     activeOpacity={0.4}
                     style={styles.clearButton}
                 >
@@ -123,7 +139,7 @@ export default function Home() {
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.listContent}
-                ListEmptyComponent={() => <Text>Nenhum item na lista :(</Text>}
+                ListEmptyComponent={() => <Text>Nenhum item na lista por enquanto :p</Text>}
             />
         </View>
     </View>
