@@ -20,7 +20,7 @@ export default function Home() {
     const [texto, setTexto] = useState("");
     const [itens, setItens] = useState<ItemStorage[]>([]);
 
-    function handlerAddList(): void {
+    async function handlerAddList(): Promise<void> {
         // 1. Validação (impede adicionar texto vazio)
         if (!texto.trim()) {
             return Alert.alert("Adicionar", "Informe a descrição para adicionar.");
@@ -29,17 +29,30 @@ export default function Home() {
         // 2. Criação do Objeto (Note as chaves {})
         const newItem = {
             id: Math.random().toString(36).substring(2),
-            description: texto, // Supondo que 'texto' é o seu estado do Input
+            description: texto,
             status: FilterStatus.PENDING
         };
 
-        // 3. Atualização da Lista (Mantém os anteriores + o novo)
-        setItens((prevState) => [...prevState, newItem]);
+        await itemsStorage.add(newItem);
+        await loadData()
 
         // 4. Dica: Limpar o campo de texto após adicionar
         setTexto("");
     }
 
+    async function loadData() {
+        try {
+            const response = await itemsStorage.get();
+            setItens(response);
+        } catch (err) {
+            console.log(err);
+            Alert.alert("Erro", "Não foi possível carregar os dados.");
+        }
+    }
+
+    useEffect(() => {
+        loadData();
+    }, []);
 
   return (
     <View style={styles.container}>
