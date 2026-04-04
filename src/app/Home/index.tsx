@@ -37,6 +37,19 @@ export default function Home() {
         setTexto("");
     }
 
+    async function handlerRemoveItem(id: string) {
+        Alert.alert("Remover", "Deseja remover este item?", [
+            { text: "Não", style: "cancel" },
+            {
+                text: "Sim",
+                onPress: async () => {
+                    await itemsStorage.remove(id);
+                    setItens(prev => prev.filter(item => item.id !== id));
+                }
+            }
+        ]);
+    }
+
     async function loadData() {
         try {
             const response = await itemsStorage.getByStatus(filter);
@@ -104,7 +117,7 @@ export default function Home() {
                     <Item
                         data={item}
                         onStatus={() => {}}
-                        onRemove={() => {}}
+                        onRemove={() => {handlerRemoveItem(item.id)}}
                     />
                 )}
                 ItemSeparatorComponent={() => <View style={styles.separator} />}
