@@ -1,5 +1,5 @@
 import {Alert, FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import {styles} from "./styles";
 import {Button} from "../components/Button"
@@ -7,6 +7,7 @@ import {Input} from "../components/Input";
 import {Filter} from "../components/Filter";
 import {FilterStatus} from "../../types/FilterStatus";
 import {Item} from "../components/Item";
+import {itemsStorage, ItemStorage} from "../../storages/itensStorage";
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING]
 const ITEMS = [
@@ -17,7 +18,7 @@ const ITEMS = [
 export default function Home() {
     const [filter, setFilter] = useState(FilterStatus.PENDING);
     const [texto, setTexto] = useState("");
-    const [itens, setItens] = useState<any>([]);
+    const [itens, setItens] = useState<ItemStorage[]>([]);
 
     function handlerAddList(): void {
         // 1. Validação (impede adicionar texto vazio)
@@ -33,11 +34,12 @@ export default function Home() {
         };
 
         // 3. Atualização da Lista (Mantém os anteriores + o novo)
-        setItens((prevState: any[]) => [...prevState, newItem]);
+        setItens((prevState) => [...prevState, newItem]);
 
         // 4. Dica: Limpar o campo de texto após adicionar
         setTexto("");
     }
+
 
   return (
     <View style={styles.container}>
