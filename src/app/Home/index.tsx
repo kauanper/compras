@@ -37,6 +37,10 @@ export default function Home() {
         setTexto("");
     }
 
+    async function handlerUpdateStatus(): Promise<void> {
+
+    }
+
     async function handlerRemoveItem(id: string) {
         Alert.alert("Remover", "Deseja remover este item?", [
             { text: "Não", style: "cancel" },

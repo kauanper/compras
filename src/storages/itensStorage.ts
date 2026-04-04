@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FilterStatus } from "../types/FilterStatus";
+import {FilterStatus} from "../types/FilterStatus";
 
 const ITENS_STORAGE_KEY = "@comprar:itens";
 
@@ -68,6 +68,25 @@ async function clear(): Promise<void> {
         AsyncStorage.removeItem(ITENS_STORAGE_KEY);
     }catch (error) {
         throw new Error("CLEAR_ITEM_STORAGE: " + error);
+    }
+}
+
+async function toggleStatus(idItem: string): Promise<void> {
+    try {
+        const storageList = await get();
+
+        const updatedList = storageList.map((item) => {
+            if (item.id === idItem) {
+                const newStatus = item.status === FilterStatus.PENDING
+                    ? FilterStatus.DONE
+                    : FilterStatus.PENDING;
+                return { ...item, status: newStatus };
+            }
+            return item;
+        });
+        await save(updatedList);
+    } catch (error) {
+        throw new Error("TOGGLE_STATUS_STORAGE: " + error);
     }
 }
 
