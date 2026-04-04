@@ -10,11 +10,7 @@ import {Item} from "../components/Item";
 import {itemsStorage, ItemStorage} from "../../storages/itensStorage";
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING]
-const ITEMS = [
-    {id: "1", status: FilterStatus.DONE, description: "comprar 1 pacoete café"},
-    {id: "2", status: FilterStatus.PENDING, description: "comprar leite em pó"},
-    {id: "3", status: FilterStatus.DONE, description: "comprar pão"}
-]
+
 export default function Home() {
     const [filter, setFilter] = useState(FilterStatus.PENDING);
     const [texto, setTexto] = useState("");
@@ -33,6 +29,7 @@ export default function Home() {
             status: FilterStatus.PENDING
         };
 
+        Alert.alert("Item Adicionado", `${texto} adicionado com sucesso`);
         await itemsStorage.add(newItem);
         await loadData()
 
@@ -67,6 +64,7 @@ export default function Home() {
                 onChangeText={(value) => {
                     setTexto(value)
                 }}
+                value={texto}
             />
 
             <Button

@@ -51,8 +51,20 @@ async function add(newItem: ItemStorage): Promise<void> {
     }
 }
 
+// 5. Metodo de remover um único elemento da lista
+async function remove(idItem: string): Promise<void> {
+    try {
+        const storedItems = await get();
+        const updatedList = storedItems.filter((item) => item.id !== idItem);
+        await save(updatedList);
+    } catch (error) {
+        throw new Error("REMOVE_ITEM_STORAGE: " + error);
+    }
+}
+
 export const itemsStorage = {
     get,
     getByStatus,
     add,
+    remove,
 }
