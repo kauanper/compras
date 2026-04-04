@@ -62,9 +62,19 @@ async function remove(idItem: string): Promise<void> {
     }
 }
 
+// 5. Metodo para limpar nossa lista
+async function clear(): Promise<void> {
+    try {
+        AsyncStorage.removeItem(ITENS_STORAGE_KEY);
+    }catch (error) {
+        throw new Error("CLEAR_ITEM_STORAGE: " + error);
+    }
+}
+
 export const itemsStorage = {
     get,
     getByStatus,
     add,
     remove,
+    clear,
 }
