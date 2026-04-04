@@ -42,7 +42,7 @@ export default function Home() {
 
     async function loadData() {
         try {
-            const response = await itemsStorage.get();
+            const response = await itemsStorage.getByStatus(filter);
             setItens(response);
         } catch (err) {
             console.log(err);
@@ -52,7 +52,7 @@ export default function Home() {
 
     useEffect(() => {
         loadData();
-    }, []);
+    }, [filter]);
 
   return (
     <View style={styles.container}>
