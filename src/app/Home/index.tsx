@@ -37,8 +37,9 @@ export default function Home() {
         setTexto("");
     }
 
-    async function handlerUpdateStatus(): Promise<void> {
-
+    async function handlerUpdateStatus(id: string): Promise<void> {
+        await itemsStorage.toggleStatus(id);
+        await loadData()
     }
 
     async function handlerRemoveItem(id: string) {
@@ -67,8 +68,6 @@ export default function Home() {
             }
         ]);
     }
-
-
 
     async function loadData() {
         try {
@@ -136,7 +135,7 @@ export default function Home() {
                 renderItem={({ item }) => (
                     <Item
                         data={item}
-                        onStatus={() => {}}
+                        onStatus={() => {handlerUpdateStatus(item.id)}}
                         onRemove={() => {handlerRemoveItem(item.id)}}
                     />
                 )}

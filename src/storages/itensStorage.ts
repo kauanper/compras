@@ -96,4 +96,5 @@ export const itemsStorage = {
     add,
     remove,
     clear,
+    toggleStatus,
 }
